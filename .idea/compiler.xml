@@ -11,7 +11,7 @@
         <module name="Commande" />
         <module name="Fournisseur" />
         <module name="eurekaServer" />
-        <module name="gatway" />
+        <module name="gateway" />
       </profile>
       <profile name="Annotation profile for authService" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -23,6 +23,9 @@
         <module name="authService" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="gatway" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -32,6 +35,7 @@
       <module name="annonce" options="-parameters" />
       <module name="authService" options="-parameters" />
       <module name="eurekaServer" options="-parameters" />
+      <module name="gateway" options="-parameters" />
       <module name="gatway" options="-parameters" />
     </option>
   </component>
