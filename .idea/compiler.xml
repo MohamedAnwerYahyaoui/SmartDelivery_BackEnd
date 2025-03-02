@@ -13,7 +13,7 @@
         <module name="eurekaServer" />
         <module name="gatway" />
       </profile>
-      <profile name="Annotation profile for authService" enabled="true">
+      <profile name="Annotation profile for Promotionss" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -21,6 +21,7 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
         </processorPath>
         <module name="authService" />
+        <module name="Promotionss" />
       </profile>
     </annotationProcessing>
   </component>
@@ -28,6 +29,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Commande" options="-parameters" />
       <module name="Fournisseur" options="-parameters" />
+      <module name="Promotionss" options="-parameters" />
       <module name="Restaurant" options="-parameters" />
       <module name="annonce" options="-parameters" />
       <module name="authService" options="-parameters" />

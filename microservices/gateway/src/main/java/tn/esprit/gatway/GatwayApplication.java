@@ -25,6 +25,7 @@ public class GatwayApplication {
 				.route("Repas",r->r.path("/repas/**").uri("lb://Repas"))
 				.route("Notification",r->r.path("/notification/**").uri("lb://Notification"))
 				.route("AuthenticationMS",r->r.path("/auth/**").uri("lb://authService"))
+				.route("Prolllmotionss",r->r.path("/pr/**").uri("lb://Promotionss"))
 
 
 
