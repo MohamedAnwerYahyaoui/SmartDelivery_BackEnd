@@ -40,6 +40,14 @@ public class RestaurantController {
         return new ResponseEntity<>(rs.updateRestaurant(id, restaurant),
                 HttpStatus.OK);
     }
+    @PutMapping(value = "/find/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Restaurant> findRestaurant(@PathVariable(value = "id") long id
+                                                      ){
+        return new ResponseEntity<>(rs.findRestaurant(id),
+                HttpStatus.OK);
+    }
+
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<String> deleteRestaurant(@PathVariable(value = "id") long id) {

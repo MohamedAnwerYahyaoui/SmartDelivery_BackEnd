@@ -8,8 +8,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="annonce" />
         <module name="Restaurant" />
-        <module name="Commande" />
+        <module name="config-server" />
         <module name="Fournisseur" />
+        <module name="Commande" />
         <module name="eurekaServer" />
         <module name="gateway" />
       </profile>
@@ -34,6 +35,7 @@
       <module name="Restaurant" options="-parameters" />
       <module name="annonce" options="-parameters" />
       <module name="authService" options="-parameters" />
+      <module name="config-server" options="-parameters" />
       <module name="eurekaServer" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="gatway" options="-parameters" />

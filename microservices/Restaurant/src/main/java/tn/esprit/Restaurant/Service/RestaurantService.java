@@ -5,6 +5,7 @@ import tn.esprit.Restaurant.Repository.RestaurantRepo;
 import tn.esprit.Restaurant.entity.Restaurant;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RestaurantService {
@@ -23,6 +24,15 @@ public class RestaurantService {
     public List<Restaurant> findAll() {
         return rr.findAll();
     }
+
+
+
+    public Restaurant findRestaurant(long id) {
+        return rr.findRestaurantByIdRestaurant(id);
+    }
+
+
+
 
 
     public Restaurant updateRestaurant(long id, Restaurant newRestaurant) {
