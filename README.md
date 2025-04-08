@@ -36,12 +36,7 @@ Service	Description
 🐳 Déploiement Facile avec Docker
 Tout le projet est conteneurisé et déployé sur DockerHub, ce qui te permet de le lancer en un seul clic, prêt à fonctionner !
 
-bash
-Copier
-Modifier
-git clone https://github.com/ton-utilisateur/smart-delivery.git
-cd smart-delivery
-docker-compose up --build
+
 🔥 Ce que vous allez adorer
 ✅ Interface simple & intuitive pour commander en quelques secondes
 
