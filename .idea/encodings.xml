@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/microservices/Commande/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/microservices/Fournisseur/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservices/GmailApi/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/microservices/Restaurant/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/microservices/annonce/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/microservices/authService/src/main/java" charset="UTF-8" />

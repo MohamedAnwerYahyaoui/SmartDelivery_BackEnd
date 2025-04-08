@@ -10,6 +10,7 @@
         <module name="Restaurant" />
         <module name="config-server" />
         <module name="Fournisseur" />
+        <module name="GmailApi" />
         <module name="Commande" />
         <module name="eurekaServer" />
         <module name="gateway" />
@@ -32,6 +33,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Commande" options="-parameters" />
       <module name="Fournisseur" options="-parameters" />
+      <module name="GmailApi" options="-parameters" />
       <module name="Restaurant" options="-parameters" />
       <module name="annonce" options="-parameters" />
       <module name="authService" options="-parameters" />
