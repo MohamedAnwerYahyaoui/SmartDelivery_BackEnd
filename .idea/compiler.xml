@@ -8,10 +8,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="annonce" />
         <module name="Restaurant" />
-        <module name="Commande" />
         <module name="Fournisseur" />
-        <module name="eurekaServer" />
         <module name="gatway" />
+        <module name="Promotionss" />
+        <module name="Commande" />
+        <module name="eurekaServer" />
       </profile>
       <profile name="Annotation profile for Promotionss" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -21,7 +22,6 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
         </processorPath>
         <module name="authService" />
-        <module name="Promotionss" />
       </profile>
     </annotationProcessing>
   </component>
