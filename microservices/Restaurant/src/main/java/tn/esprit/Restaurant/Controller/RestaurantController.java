@@ -20,7 +20,7 @@ public class RestaurantController {
     }
 
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/all")
     public ResponseEntity<List<Restaurant>> listRestaurant(){
         return new ResponseEntity<>(rs.findAll(), HttpStatus.OK);
     }

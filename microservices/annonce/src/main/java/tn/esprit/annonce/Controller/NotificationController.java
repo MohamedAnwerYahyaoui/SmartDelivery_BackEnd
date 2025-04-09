@@ -12,7 +12,7 @@ import tn.esprit.annonce.Service.NotificationService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/notification")
+@RequestMapping("/annonce")
 public class NotificationController {
 
     private final NotificationService nr;
@@ -20,7 +20,7 @@ public class NotificationController {
     public NotificationController(NotificationService nr){
         this.nr=nr;
     }
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/all")
     public ResponseEntity<List<Notification>> listNotification(){
         return new ResponseEntity<>(nr.findAll(), HttpStatus.OK);
     }

@@ -10,7 +10,7 @@ import tn.esprit.Commande.Service.CommandeService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/commande")
+@RequestMapping("/commandes")
 public class CommandeController {
 
     private final CommandeService commandeService;
