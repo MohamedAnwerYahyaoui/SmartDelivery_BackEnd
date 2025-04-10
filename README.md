@@ -11,7 +11,7 @@ Smart Delivery, c’est :
 
 🚴 Des livreurs assistés par une carte intelligente, optimisée grâce à une app Python qui scrape les itinéraires.
 
-🔔 Des notifications en temps réel, pour ne jamais perdre de vue votre commande.
+🔔 Des annonces en temps réel, pour ne jamais perdre de vue votre commande.
 
 🔒 Une sécurité à toute épreuve, grâce à Keycloak pour une authentification robuste.
 
