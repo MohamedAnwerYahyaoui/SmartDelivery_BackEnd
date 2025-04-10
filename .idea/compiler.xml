@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -14,6 +15,7 @@
         <module name="Commande" />
         <module name="eurekaServer" />
         <module name="gateway" />
+        <module name="promotion" />
       </profile>
       <profile name="Annotation profile for authService" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -28,6 +30,7 @@
     <bytecodeTargetLevel>
       <module name="config-server" target="17" />
       <module name="gatway" target="17" />
+      <module name="Promotionss" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -35,6 +38,7 @@
       <module name="Commande" options="-parameters" />
       <module name="Fournisseur" options="-parameters" />
       <module name="GmailApi" options="-parameters" />
+      <module name="Promotionss" options="-parameters" />
       <module name="Restaurant" options="-parameters" />
       <module name="annonce" options="-parameters" />
       <module name="authService" options="-parameters" />
@@ -43,6 +47,7 @@
       <module name="eurekaServer" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="gatway" options="-parameters" />
+      <module name="promotion" options="-parameters" />
     </option>
   </component>
 </project>

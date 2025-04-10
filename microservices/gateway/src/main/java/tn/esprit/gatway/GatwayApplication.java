@@ -23,7 +23,7 @@ public class GatwayApplication {
 		.route("Fournisseur",r->r.path("/fournisseur/**").uri("lb://Fournisseur"))
 				.route("Restaurant",r->r.path("/restaurant/**").uri("lb://Restaurant"))
 				.route("Repas",r->r.path("/repas/**").uri("lb://Repas"))
-				//.route("Notification",r->r.path("/notification/**").uri("lb://Notification"))
+				.route("promotion",r->r.path("/pr/**").uri("lb://promotion"))
 				.route("AuthenticationMS",r->r.path("/auth/**").uri("lb://authService"))
 
 				.route("annonce",r->r.path("/annonce/**").uri("lb://annonce"))
