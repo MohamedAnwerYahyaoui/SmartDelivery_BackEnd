@@ -1,5 +1,6 @@
 package tn.esprit.Commande.Controller;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +10,13 @@ import tn.esprit.Commande.Entity.Status;
 import tn.esprit.Commande.Repository.CommandeRepo;
 import tn.esprit.Commande.Service.CommandeService;
 
+import javax.swing.text.Document;
+import java.awt.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/commande")
@@ -59,6 +66,10 @@ public class CommandeController {
             return new ResponseEntity<>(commandeService.findAll(), HttpStatus.OK);
         }
         return new ResponseEntity<>(commandeService.findByStatus(status), HttpStatus.OK);
+    }
+    @GetMapping("/statistics")
+    public ResponseEntity<Map<String, Object>> getStatistics() {
+        return new ResponseEntity<>(commandeService.getStatistics(), HttpStatus.OK);
     }
 
 }

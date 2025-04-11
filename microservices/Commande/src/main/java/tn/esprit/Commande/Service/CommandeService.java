@@ -5,11 +5,12 @@ import tn.esprit.Commande.Entity.Commande;
 import tn.esprit.Commande.Entity.Status;
 import tn.esprit.Commande.Repository.CommandeRepo;
 
-import java.util.List;
+import java.util.*;
+import java.util.logging.Logger;
 
 @Service
 public class CommandeService {
-
+    private static final Logger logger = Logger.getLogger(CommandeService.class.getName());
     private final CommandeRepo commandeRepo;
     private CommandeRepo cr;
 
@@ -57,6 +58,29 @@ public class CommandeService {
     public List<Commande> findByStatus(Status status) {
         return commandeRepo.findByStatus(status);
     }
+    public Map<String, Object> getStatistics() {
+        Map<String, Object> stats = new HashMap<>();
+
+        // Count by status
+        Map<String, Long> countByStatus = new HashMap<>();
+        for (Status status : Status.values()) {
+            long count = commandeRepo.findByStatus(status).size();
+            countByStatus.put(status.toString(), count);
+        }
+        stats.put("countByStatus", countByStatus);
+
+        // Average order amount
+        List<Commande> allCommandes = commandeRepo.findAll();
+        double averageAmount = allCommandes.stream()
+                .mapToDouble(Commande::getMantantTotal)
+                .average()
+                .orElse(0.0);
+        stats.put("averageAmount", averageAmount);
+
+        logger.info("Statistics computed: " + stats);
+        return stats;
+    }
+
 }
 
 
