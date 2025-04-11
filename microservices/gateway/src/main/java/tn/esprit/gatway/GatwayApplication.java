@@ -27,6 +27,7 @@ public class GatwayApplication {
 				.route("AuthenticationMS",r->r.path("/auth/**").uri("lb://authService"))
 
 				.route("annonce",r->r.path("/annonce/**").uri("lb://annonce"))
+				.route("email-service", r -> r.path("/mail/**").uri("lb://email-service"))
 
 				.build();
 	}
