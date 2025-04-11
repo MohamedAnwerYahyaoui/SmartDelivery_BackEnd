@@ -13,7 +13,9 @@ import tn.esprit.Fournisseur.Repository.FournisseurRepository;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -165,5 +167,24 @@ public class FournisseurService {
             System.err.println("Erreur lors de la génération du Excel: " + e.getMessage());
             return ResponseEntity.internalServerError().build();
         }
+    }
+    public Map<String, Object> getStatistiques() {
+        Map<String, Object> stats = new HashMap<>();
+
+        // Nombre total de fournisseurs
+        long totalFournisseurs = fr.count();
+        stats.put("totalFournisseurs", totalFournisseurs);
+
+        // Répartition par région (supposons que l'adresse contient la région)
+        List<Object[]> repartition = fr.countByRegion(); // Requête custom à implémenter
+
+        Map<String, Long> repartitionMap = new HashMap<>();
+        for (Object[] result : repartition) {
+            repartitionMap.put((String) result[0], (Long) result[1]);
+        }
+        stats.put("repartitionParRegion", repartitionMap);
+
+        System.out.println("Statistiques générées: " + stats);
+        return stats;
     }
 }

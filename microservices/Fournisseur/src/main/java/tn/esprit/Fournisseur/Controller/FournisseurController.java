@@ -8,6 +8,7 @@ import tn.esprit.Fournisseur.Entity.Fournisseur;
 import tn.esprit.Fournisseur.Service.FournisseurService;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/fournisseur")
@@ -63,5 +64,10 @@ public class FournisseurController {
     public ResponseEntity<byte[]> generateExcel(@PathVariable long id) {
         System.out.println("Génération Excel pour le fournisseur ID: " + id);
         return fournisseurService.generateFournisseurExcel(id);
+    }
+    @GetMapping("/statistiques")
+    public ResponseEntity<Map<String, Object>> getStatistiques() {
+        System.out.println("Récupération des statistiques des fournisseurs");
+        return new ResponseEntity<>(fournisseurService.getStatistiques(), HttpStatus.OK);
     }
 }
