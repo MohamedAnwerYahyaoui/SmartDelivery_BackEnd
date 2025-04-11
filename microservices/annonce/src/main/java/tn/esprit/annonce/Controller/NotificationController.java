@@ -85,7 +85,7 @@ public class NotificationController {
         List<Notification> notifications = nr.sendGroupNotifications(request);
         return new ResponseEntity<>(notifications, HttpStatus.OK);
     }
-    @GetMapping(value = "/stattistique", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/stats", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Map<String, Integer>> getNotificationStats() {
         Map<String, Integer> stats = nr.getNotificationStats();
         return new ResponseEntity<>(stats, HttpStatus.OK);
