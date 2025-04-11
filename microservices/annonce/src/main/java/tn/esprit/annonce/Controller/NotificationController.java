@@ -74,11 +74,13 @@ public class NotificationController {
 
     }
 
+    //historique des notifications des clients
     @GetMapping(value = "/history/{nomClient}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Notification>> getNotificationHistory(@PathVariable("nomClient") String nomClient) {
         List<Notification> history = nr.getHistory(nomClient);
         return new ResponseEntity<>(history, HttpStatus.OK);
     }
+
     //   l'envoi groupé de notifications personnalisées
     @PostMapping(value = "/group", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Notification>> sendGroupNotifications(@RequestBody GroupNotification request) {
