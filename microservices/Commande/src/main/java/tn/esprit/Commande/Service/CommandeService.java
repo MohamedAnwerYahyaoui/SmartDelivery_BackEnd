@@ -1,18 +1,29 @@
 package tn.esprit.Commande.Service;
 
+import feign.Client;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.Commande.Entity.Commande;
+import tn.esprit.Commande.OpenFeign.ClientClient;
+import tn.esprit.Commande.OpenFeign.ClientRequest;
+import tn.esprit.Commande.OpenFeign.EmailClient;
+import tn.esprit.Commande.OpenFeign.EmailRequest;
 import tn.esprit.Commande.Repository.CommandeRepo;
 
 import java.util.List;
 
 @Service
 public class CommandeService {
-
+private final ClientClient client;
     private CommandeRepo cr;
 
-    public CommandeService(CommandeRepo cr){
+    @Autowired
+    private EmailClient emailClient;
+
+    public CommandeService(CommandeRepo cr,EmailClient emailClient,ClientClient client){
         this.cr=cr;
+        this.emailClient=emailClient;
+        this.client=client;
     }
 
 
@@ -46,6 +57,61 @@ public class CommandeService {
         } else
             return "commande non supprimé";
     }
+
+
+
+
+
+
+    public void confirmerCommande(Long idCommande, String nom) {
+        Commande commande = cr.findById(idCommande)
+                .orElseThrow(() -> new RuntimeException("Commande not found"));
+
+        // Debug: Ajoutez ce log
+        System.out.println("Recherche du client: " + nom);
+
+        ClientRequest cl = client.findbynom(nom);
+
+        // Debug: Affichez tout l'objet client reçu
+        System.out.println("Client reçu: " + cl);
+
+        if (cl == null) {
+            throw new RuntimeException("Client not found with nom: " + nom);
+        }
+
+        try {
+            EmailRequest email = new EmailRequest(
+                    cl.getEmail(), // Utilisation dynamique de l'email du client
+                    "Confirmation de votre commande #" + commande.getIdCommande(),
+                    "Votre commande est en cours de préparation."
+
+            );
+            emailClient.sendEmail(email);
+            System.out.println("Email envoyé avec succès à adsenceatef@gmail.com");
+        } catch (Exception e) {
+            System.out.println("Erreur lors de l'envoi de l'email: " + e.getMessage());
+        }
+    }
+
+//    public void confirmerCommande(Long idCommande,String nom) {
+//        Commande commande = cr.findById(idCommande).get();
+//        ClientRequest cl =client.findbynom(nom);
+//
+//
+//        EmailRequest email = new EmailRequest(
+//                cl.getEmail(),
+//                "Confirmation de votre commande",
+//                "Votre commande #" + commande.getIdCommande() + " est en cours de préparation."
+//        );
+//
+//        emailClient.sendEmail(email);
+//    }
+//
+//
+//
+//
+
+
 }
 
 

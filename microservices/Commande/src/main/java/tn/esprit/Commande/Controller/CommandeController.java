@@ -45,6 +45,18 @@ public class CommandeController {
         return new ResponseEntity<>(commandeService.deleteCommande(id), HttpStatus.OK);
     }
 
+
+
+    @PostMapping(value = "/{id}/{nom}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public void confirmerCommande(@PathVariable Long id,@PathVariable String nom){
+
+        commandeService.confirmerCommande(id, nom);
+    }
+
+
+
+
 }
 
 

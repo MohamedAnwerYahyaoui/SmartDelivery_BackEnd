@@ -19,8 +19,9 @@ public class GatwayApplication {
 	@Bean
 	public RouteLocator customRouteLocator(RouteLocatorBuilder builder){
 
-		return builder.routes().route("Commande",r->r.path("/commandes/**").uri("lb://Commande"))
-		.route("Fournisseur",r->r.path("/fournisseur/**").uri("lb://Fournisseur"))
+		return builder.routes()
+				.route("Commande",r->r.path("/commandes/**").uri("lb://Commande"))
+		        .route("Fournisseur",r->r.path("/fournisseur/**").uri("lb://Fournisseur"))
 				.route("Restaurant",r->r.path("/restaurant/**").uri("lb://Restaurant"))
 				.route("Repas",r->r.path("/repas/**").uri("lb://Repas"))
 				.route("promotion",r->r.path("/pr/**").uri("lb://promotion"))
@@ -28,6 +29,7 @@ public class GatwayApplication {
 
 				.route("annonce",r->r.path("/annonce/**").uri("lb://annonce"))
 				.route("email-service", r -> r.path("/mail/**").uri("lb://email-service"))
+				.route("client", r -> r.path("/client/**").uri("lb://client"))
 
 				.build();
 	}

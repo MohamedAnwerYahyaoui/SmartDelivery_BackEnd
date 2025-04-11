@@ -12,6 +12,7 @@
         <module name="Fournisseur" />
         <module name="config-server (1) (esprit)" />
         <module name="GmailApi" />
+        <module name="client" />
         <module name="Commande" />
         <module name="eurekaServer" />
         <module name="gateway" />
@@ -42,6 +43,7 @@
       <module name="Restaurant" options="-parameters" />
       <module name="annonce" options="-parameters" />
       <module name="authService" options="-parameters" />
+      <module name="client" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="config-server (1) (esprit)" options="-parameters" />
       <module name="eurekaServer" options="-parameters" />
