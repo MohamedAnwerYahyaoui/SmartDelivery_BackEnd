@@ -16,7 +16,7 @@ public class FournisseurController {
 
     public FournisseurController(FournisseurService fournisseurService) {
         this.fournisseurService = fournisseurService;
-        System.out.println("Controller Fournisseur initialisé avec service d'email");
+        System.out.println("Controller Fournisseur initialisé avec service d'email et PDF");
     }
 
     @GetMapping("/list")
@@ -51,5 +51,11 @@ public class FournisseurController {
         ResponseEntity<String> response = new ResponseEntity<>(fournisseurService.deleteFournisseur(id), HttpStatus.OK);
         System.out.println("Résultat de la suppression: " + response.getBody());
         return response;
+    }
+
+    @GetMapping(value = "/{id}/pdf", produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<byte[]> generatePdf(@PathVariable long id) {
+        System.out.println("Génération PDF pour le fournisseur ID: " + id);
+        return fournisseurService.generateFournisseurPdf(id);
     }
 }

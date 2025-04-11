@@ -1,12 +1,17 @@
 package tn.esprit.Fournisseur.Service;
 
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfWriter;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import tn.esprit.Fournisseur.Entity.Fournisseur;
 import tn.esprit.Fournisseur.Repository.FournisseurRepository;
 
+import java.io.ByteArrayOutputStream;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FournisseurService {
@@ -52,6 +57,37 @@ public class FournisseurService {
             System.err.println("À: " + fournisseur.getEmail());
             System.err.println("Erreur: " + e.getMessage());
             System.err.println("===============================\n");
+        }
+    }
+
+    public ResponseEntity<byte[]> generateFournisseurPdf(long id) {
+        try {
+            Optional<Fournisseur> fournisseurOpt = fr.findById(id);
+            if (fournisseurOpt.isEmpty()) {
+                return ResponseEntity.notFound().build();
+            }
+
+            Fournisseur fournisseur = fournisseurOpt.get();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            Document document = new Document();
+            PdfWriter.getInstance(document, baos);
+
+            document.open();
+            document.add(new Paragraph("Fiche Fournisseur"));
+            document.add(new Paragraph(" "));
+            document.add(new Paragraph("Nom: " + fournisseur.getNomFournisseur()));
+            document.add(new Paragraph("Adresse: " + fournisseur.getAdresse()));
+            document.add(new Paragraph("Email: " + fournisseur.getEmail()));
+            document.add(new Paragraph("Téléphone: " + fournisseur.getNumtel()));
+            document.close();
+
+            System.out.println("PDF généré avec succès pour le fournisseur ID: " + id);
+            return ResponseEntity.ok()
+                    .header("Content-Disposition", "attachment; filename=fournisseur_" + id + ".pdf")
+                    .body(baos.toByteArray());
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la génération du PDF: " + e.getMessage());
+            return ResponseEntity.internalServerError().build();
         }
     }
 
