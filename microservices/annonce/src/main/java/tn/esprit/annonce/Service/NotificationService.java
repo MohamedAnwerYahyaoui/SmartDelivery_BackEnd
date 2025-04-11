@@ -53,7 +53,7 @@ public class NotificationService {
         } else
             return "notification non supprimé";
     }
-    // Marquer une notification comme lue
+    //  une notification comme lue
     public Notification markAsRead(long id) {
         Notification notification = findById(id);
         if (notification != null) {
@@ -63,7 +63,7 @@ public class NotificationService {
         return null;
     }
 
-    // Marquer une notification comme non lue
+    //  une notification comme non lue
     public Notification markAsUnread(long id) {
         Notification notification = findById(id);
         if (notification != null) {
