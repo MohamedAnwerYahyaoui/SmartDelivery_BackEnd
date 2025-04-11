@@ -1,52 +1,43 @@
-🚀 Smart Delivery — La Révolution de la Livraison Intelligente
-Bienvenue dans Smart Delivery, une solution de nouvelle génération pour la commande et la livraison de repas. Cette plateforme innovante connecte clients, restaurants et livreurs dans un écosystème fluide, intelligent et ultra-efficace.
+# SmartDelivery_BackEnd 🚚
 
-Avec Smart Delivery, commander un repas devient une expérience rapide, intelligente et personnalisée, que vous soyez client affamé, restaurant dynamique, ou livreur motivé.
+## Aperçu 📋
 
-🌟 Pourquoi Smart Delivery ?
-Parce que la livraison de repas mérite mieux qu’une simple application.
-Smart Delivery, c’est :
+`SmartDelivery_BackEnd` est une application **Spring Boot** conçue pour gérer les opérations de livraison. Le module `Commande` se concentre sur la gestion des commandes au sein du système, offrant des fonctionnalités pour créer, mettre à jour, supprimer et récupérer des commandes, ainsi que pour calculer des statistiques et des totaux à des fins de reporting.
 
-🍽️ Des restaurants connectés, qui proposent leurs menus en quelques clics.
+Ce projet fait partie d'un système plus large de gestion de livraisons et est construit avec **Spring Boot**, **Spring Data JPA** et une base de données relationnelle (par exemple, MySQL, H2).
 
-🚴 Des livreurs assistés par une carte intelligente, optimisée grâce à une app Python qui scrape les itinéraires.
+## Module Commande 📦
 
-🔔 Des notifications en temps réel, pour ne jamais perdre de vue votre commande.
+Le module `Commande` gère les commandes (`Commande` entities) avec les attributs suivants :
+- 🆔 `idCommande` : Identifiant unique de la commande (généré automatiquement).
+- 💰 `mantantTotal` : Montant total de la commande (float).
+- 📅 `dateLiv` : Date de livraison de la commande (`Date`).
+- 📊 `status` : Statut de la commande (`Livrée` ou `nonLivrée`).
 
-🔒 Une sécurité à toute épreuve, grâce à Keycloak pour une authentification robuste.
+### Fonctionnalités ✨
+- ➕ Créer, ✏️ mettre à jour et 🗑️ supprimer des commandes.
+- 📜 Récupérer toutes les commandes ou filtrer par statut.
+- 🧮 Calculer le montant total des commandes, avec un filtre optionnel par statut.
+- 📈 Générer des statistiques, incluant le nombre de commandes par statut et le montant moyen des commandes.
 
-📦 Des fournisseurs intégrés, pour que les restaurants ne manquent jamais d'ingrédients.
+## Points de terminaison de l'API 🌐
 
-⚡ Une architecture microservices performante, prête à évoluer avec vos besoins.
+Le module `Commande` expose les points de terminaison REST suivants sous le chemin de base `/commande` :
 
-🧠 Une Architecture Moderne
-Développé en microservices avec Spring Boot, chaque composant est indépendant, scalable et facile à maintenir.
+| Méthode | Point de terminaison       | Description                                      | Corps de la requête/Paramètres de requête     | Exemple de réponse                                                               |
+|---------|----------------------------|--------------------------------------------------|-----------------------------------------------|----------------------------------------------------------------------------------|
+| GET     | `/commande/list`           | 📜 Récupérer toutes les commandes.              | Aucun                                         | `[{"idCommande": 1, "mantantTotal": 100.0, "dateLiv": "2025-04-11T00:00:00.000+00:00", "status": "Livrée"}]` |
+| POST    | `/commande/ajouter`        | ➕ Créer une nouvelle commande.                 | `{"mantantTotal": 100.0, "dateLiv": "2025-04-11T00:00:00.000+00:00", "status": "Livrée"}` | `{"idCommande": 1, "mantantTotal": 100.0, "dateLiv": "2025-04-11T00:00:00.000+00:00", "status": "Livrée"}` |
+| PUT     | `/commande/{id}`           | ✏️ Mettre à jour une commande existante par ID. | Chemin : `id`, Corps : `{"mantantTotal": 150.0, "dateLiv": "2025-04-12T00:00:00.000+00:00", "status": "nonLivrée"}` | `{"idCommande": 1, "mantantTotal": 150.0, "dateLiv": "2025-04-12T00:00:00.000+00:00", "status": "nonLivrée"}` |
+| DELETE  | `/commande/{id}`           | 🗑️ Supprimer une commande par ID.              | Chemin : `id`                                 | `"commande supprimé"` ou `"commande non supprimé"`                              |
+| GET     | `/commande/total-amount`   | 🧮 Calculer le montant total des commandes.     | Requête : `status` (optionnel, ex. `Livrée`)  | `250.0`                                                                         |
+| GET     | `/commande/status`         | 📜 Récupérer les commandes par statut.          | Requête : `status` (optionnel, ex. `Livrée`)  | `[{"idCommande": 1, "mantantTotal": 100.0, "dateLiv": "2025-04-11T00:00:00.000+00:00", "status": "Livrée"}]` |
+| GET     | `/commande/statistics`     | 📈 Obtenir des statistiques (nombre par statut, montant moyen). | Aucun                                         | `{"countByStatus": {"Livrée": 1, "nonLivrée": 1}, "averageAmount": 150.0}`     |
 
-🔧 Composants Techniques
-Service	Description
-🛒 Commande	Gère les commandes entre client et restaurant
-🍴 Fournisseur	Permet aux restaurants de commander leurs produits
-📢 Annonce	Notifie les clients du statut de leur livraison
-🧍 User	Gère les profils utilisateurs (clients, livreurs, restos)
-🧭 Scraping Python	Aide le livreur à trouver le chemin optimal via la carte
-🌐 API Gateway	Point d’entrée sécurisé vers tous les services
-🧭 Eureka Server	Découverte automatique des services
-⚙️ Config Server	Configuration centralisée de tous les services
-🔐 Keycloak	Authentification & gestion des rôles
-🐳 Déploiement Facile avec Docker
-Tout le projet est conteneurisé et déployé sur DockerHub, ce qui te permet de le lancer en un seul clic, prêt à fonctionner !
+## Prérequis 🛠️
 
-
-🔥 Ce que vous allez adorer
-✅ Interface simple & intuitive pour commander en quelques secondes
-
-🧠 Livraison plus rapide grâce à l’intelligence de la carte
-
-📈 Microservices testés, découplés et prêts pour la mise à l’échelle
-
-🔐 Authentification sécurisée pour chaque utilisateur
-
-🚀 Code propre, modulaire, prêt pour le cloud
-
-👨‍💻 À propos du développeur
-Ce projet est né d'une passion pour l'efficacité, l'expérience utilisateur et l'architecture logicielle moderne. Il a été conçu, développé et déployé avec soin pour répondre aux défis réels des services de livraison d’aujourd’hui.
+- ☕ **Java** : JDK 17 ou supérieur
+- 📦 **Maven** : Pour la gestion des dépendances et la construction du projet
+- 🗄️ **Base de données** : MySQL (ou une autre base de données relationnelle ; configurez dans `application.properties`)
+- 🌐 **Git** : Pour cloner le dépôt
+- 📬 **Postman** : Pour tester les points de terminaison de l'API
