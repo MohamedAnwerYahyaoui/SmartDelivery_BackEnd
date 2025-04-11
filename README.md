@@ -11,6 +11,7 @@ Historique par Client	Liste chronologique des notifications pour un client, tri�
 Statistiques & Analytics	Endpoint de statistiques globales (total, lues, non lues)
 Diffusion en Temps Réel	Intégration WebSocket/STOMP pour push instantané (si le client est connecté)
 Marquage Lu / Non Lu	Possibilité de marquer une notification comme lue ou non lue
+
 🔍 Aperçu des Endpoints API
 Gestion des Notifications
 GET /notification
@@ -53,6 +54,7 @@ Connexion à l’endpoint ws://{host}:{port}/ws-notifications
 /topic/notifications : réception en temps réel des notifications
 
 🛠 Configuration Technique
+
 Prérequis
 Java 17+
 
@@ -65,8 +67,6 @@ Accès SMTP si vous étendez le microservice pour envoyer des emails
 Installation
 Cloner le dépôt :
 
-bash
-Copier
 git clone https://github.com/MohamedAnwerYahyaoui/SmartDelivery_BackEnd.git
 cd SmartDelivery_BackEnd
 
