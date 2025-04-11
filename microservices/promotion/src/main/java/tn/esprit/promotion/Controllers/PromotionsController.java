@@ -40,7 +40,7 @@ public class PromotionsController {
 
     @GetMapping("/hello")
     public String sayHello() {
-        return "Hello I'm Microservice promotions";
+        return "Hello I'm Microservice promotionss";
     }
 
 
