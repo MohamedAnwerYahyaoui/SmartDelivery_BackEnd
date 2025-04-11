@@ -1,5 +1,5 @@
 package tn.esprit.annonce.Entity;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -11,17 +11,22 @@ public class Notification {
     @Id
     @GeneratedValue
     private Long idNotification;
-    private String NomClient;
+    private String nomClient;
     private String Contenu;
     private Date date;
+    @Column(name = "is_read", nullable = false)
+    private boolean read;
+
 
     public Notification() {
     }
 
-    public Notification(String nomClient, String contenu, Date date) {
-        this.NomClient = nomClient;
+    public Notification(String nomClient, String contenu, Date date,boolean read) {
+        this.nomClient = nomClient;
         this.Contenu = contenu;
         this.date = date;
+        this.read = read;
+
     }
 
     public Long getIdNotification() {
@@ -33,11 +38,11 @@ public class Notification {
     }
 
     public String getNomClient() {
-        return NomClient;
+        return nomClient;
     }
 
     public void setNomClient(String nomClient) {
-        NomClient = nomClient;
+        this.nomClient = nomClient;
     }
 
     public String getContenu() {
@@ -54,5 +59,13 @@ public class Notification {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public boolean isRead() {
+        return read;
+    }
+
+    public void setRead(boolean read) {
+        this.read = read;
     }
 }
