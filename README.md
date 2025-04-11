@@ -8,17 +8,17 @@ Microservice complet pour la gestion et la diffusion des notifications dans l’
 
 Fonctionnalité                                   Description
 
-Gestion des Notifications	                       CRUD complet (création, lecture, mise à jour, suppression) avec validation
+*Gestion des Notifications	                       *CRUD complet (création, lecture, mise à jour, suppression) avec validation
 
-Envoi Groupé Personnalisé	                       Envoi de plusieurs notifications via un template dynamique (placeholders)
+*Envoi Groupé Personnalisé	                       *Envoi de plusieurs notifications via un template dynamique (placeholders)
 
-Historique par Client	Liste                      chronologique des notifications pour un client, triée par date décroissante
+*Historique par Client	Liste                      *chronologique des notifications pour un client, triée par date décroissante
 
-Statistiques & Analytics	                       Endpoint de statistiques globales (total, lues, non lues)
+*Statistiques & Analytics	                         *Endpoint de statistiques globales (total, lues, non lues)
 
-Diffusion en Temps Réel	                         Intégration WebSocket/STOMP pour push instantané (si le client est connecté)
+*Diffusion en Temps Réel	                         *Intégration WebSocket/STOMP pour push instantané (si le client est connecté)
 
-Marquage Lu / Non Lu	                            Possibilité de marquer une notification comme lue ou non lue
+*Marquage Lu / Non Lu	                              *Possibilité de marquer une notification comme lue ou non lue
 
 🔍 Aperçu des Endpoints API
 
