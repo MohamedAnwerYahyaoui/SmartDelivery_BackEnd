@@ -31,6 +31,10 @@ public class GatwayApplication {
 				.route("email-service", r -> r.path("/mail/**").uri("lb://email-service"))
 				.route("client", r -> r.path("/client/**").uri("lb://client"))
 
+				.route("Auth-swagger", r -> r.path("/auth-swagger/**")
+						.filters(f -> f.rewritePath("/auth-swagger/(?<segment>.*)", "/${segment}"))
+						.uri("lb://authService"))
+
 				.build();
 	}
 

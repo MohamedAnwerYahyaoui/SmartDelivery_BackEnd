@@ -17,7 +17,7 @@ services:
     depends_on:
       - eureka
     environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8076/eureka/
     networks:
       - microservices-network
 
@@ -31,7 +31,7 @@ services:
       - eureka
       - gateway
     environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8076/eureka/
     networks:
       - microservices-network
 
@@ -45,7 +45,7 @@ services:
       - eureka
       - gateway
     environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8076/eureka/
     networks:
       - microservices-network
 
@@ -59,7 +59,7 @@ services:
       - eureka
       - gateway
     environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8076/eureka/
     networks:
       - microservices-network
   fournisseur-service:
@@ -72,7 +72,7 @@ services:
       - eureka
       - gateway
     environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8076/eureka/
     networks:
       - microservices-network
 
@@ -86,7 +86,7 @@ services:
       - eureka
       - gateway
     environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8076/eureka/
     networks:
       - microservices-network
 
@@ -100,7 +100,21 @@ services:
       - eureka
       - gateway
     environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8076/eureka/
+    networks:
+      - microservices-network
+
+  authService-service:
+    build: ./microservices/authService
+    image: authManagement:latest
+    container_name: authManagementContainer
+    ports:
+      - "8070:8070"
+    depends_on:
+      - eureka
+      - gateway
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8076/eureka/
     networks:
       - microservices-network
 

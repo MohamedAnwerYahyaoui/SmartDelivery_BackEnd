@@ -23,7 +23,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
+        <processorPath>
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
         </processorPath>
         <module name="authService" />
@@ -43,7 +43,7 @@
       <module name="Restaurant" options="-parameters" />
       <module name="annonce" options="-parameters" />
       <module name="authService" options="-parameters" />
-      <module name="client" options="" />
+      <module name="client" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="config-server (1) (esprit)" options="-parameters" />
       <module name="eurekaServer" options="-parameters" />

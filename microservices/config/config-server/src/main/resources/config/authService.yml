@@ -1,0 +1,37 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${app.keycloak.serverUrl}/realms/${app.keycloak.realm}
+          jwk-set-uri: ${app.keycloak.serverUrl}/realms/${app.keycloak.realm}/protocol/openid-connect/certs
+
+
+server:
+  port: 8070
+  servlet:
+    context-path: /auth
+
+
+app:
+  keycloak:
+    admin:
+      clientId: admin-cli
+      clientSecret: B59AbvL9dSGtMf8p9xMBETIgT0vDOt5K
+    realm: smartDelivery
+    serverUrl: http://localhost:8091
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8076/eureka
+    register-with-eureka: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+
