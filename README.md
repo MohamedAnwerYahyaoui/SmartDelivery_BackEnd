@@ -122,7 +122,7 @@ This microservice is designed to run in containers and is part of a Dockerized e
     - Spring Config Server
   
 
-Example snippet from `docker-compose.yml` for Keycloak:
+Example snippet from `docker-compose.yml` for authService:
 
 ```yaml
 services:
