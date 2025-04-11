@@ -5,7 +5,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDateTime;
+import java.util.Date;
 
 @Entity
 public class Promotions {
@@ -13,7 +15,7 @@ public class Promotions {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;
     private String Description;
-    private String date;
+    private LocalDateTime date;
     private String offre;
     private int prix;
 
@@ -37,11 +39,9 @@ private Long id;
         Description = description;
     }
 
-    public ChronoLocalDateTime<?> getDate() {
-        return date;
-    }
 
-    public void setDate(String date) {
+
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
@@ -61,7 +61,7 @@ private Long id;
         this.prix = prix;
     }
 
-    public Promotions(String description, String date, String offre, int prix) {
+    public Promotions(String description, LocalDateTime date, String offre, int prix) {
         Description = description;
         this.date = date;
         this.offre = offre;
@@ -69,4 +69,8 @@ private Long id;
     }
 
 
+    public LocalDateTime  getDate() {
+
+        return date;
+    }
 }
