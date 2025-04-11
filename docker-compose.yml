@@ -1,0 +1,115 @@
+services:
+  eureka:
+    build: ./eureka
+    image:  eureka:latest
+    container_name: eureka-server
+    ports:
+      - "8076:8076"
+    networks:
+      - microservices-network
+
+  gateway:
+    build: ./gateway
+    image:  getway:latest
+    container_name: getwayContainer
+    ports:
+      - "8066:8066"
+    depends_on:
+      - eureka
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+    networks:
+      - microservices-network
+
+  restaurant-service:
+    build: ./microservices/restaurant
+    image:  restaurant:latest
+    container_name: restaurantContainer
+    ports:
+      - "8082:8082"
+    depends_on:
+      - eureka
+      - gateway
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+    networks:
+      - microservices-network
+
+  commande-service:
+    build: ./microservices/Commande
+    image: commande:latest
+    container_name: commandeContainer
+    ports:
+      - "8084:8084"
+    depends_on:
+      - eureka
+      - gateway
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+    networks:
+      - microservices-network
+
+  annonce-service:
+    build: ./microservices/annonce
+    image: annonce:latest
+    container_name: annonceContainer
+    ports:
+      - "8999:8999"
+    depends_on:
+      - eureka
+      - gateway
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+    networks:
+      - microservices-network
+  fournisseur-service:
+    build: ./microservices/Fournisseur
+    image: fournisseur:latest
+    container_name: fournisseurContainer
+    ports:
+      - "8087:8087"
+    depends_on:
+      - eureka
+      - gateway
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+    networks:
+      - microservices-network
+
+  configserver-service:
+    build: ./microservices/config/config-server
+    image: configserver:latest
+    container_name: configserverContainer
+    ports:
+      - "8888:8888"
+    depends_on:
+      - eureka
+      - gateway
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+    networks:
+      - microservices-network
+
+  promotion-service:
+    build: ./microservices/promotion
+    image: promotion:latest
+    container_name: promotionContainer
+    ports:
+      - "8055:8055"
+    depends_on:
+      - eureka
+      - gateway
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8761/eureka/
+    networks:
+      - microservices-network
+
+
+
+
+
+
+
+networks:
+  microservices-network:
+    driver: bridge

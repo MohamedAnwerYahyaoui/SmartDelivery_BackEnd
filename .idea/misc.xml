@@ -1,0 +1,25 @@
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/microservices/annonce/pom.xml" />
+        <option value="$PROJECT_DIR$/microservices/authService/pom.xml" />
+        <option value="$PROJECT_DIR$/microservices/Commande/pom.xml" />
+        <option value="$PROJECT_DIR$/microservices/eurekaServer/pom.xml" />
+        <option value="$PROJECT_DIR$/microservices/Fournisseur/pom.xml" />
+        <option value="$PROJECT_DIR$/microservices/gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/microservices/Restaurant/pom.xml" />
+        <option value="$PROJECT_DIR$/microservices/config-server/pom.xml" />
+        <option value="$PROJECT_DIR$/microservices/GmailApi/pom.xml" />
+        <option value="$PROJECT_DIR$/microservices/config/config-server/pom.xml" />
+        <option value="$PROJECT_DIR$/microservices/Promotionss/pom.xml" />
+        <option value="$PROJECT_DIR$/microservices/promotion/pom.xml" />
+        <option value="$PROJECT_DIR$/microservices/client/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="jbr-17 (2)" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="annonce" />
+        <module name="Restaurant" />
+        <module name="config-server" />
+        <module name="Fournisseur" />
+        <module name="config-server (1) (esprit)" />
+        <module name="GmailApi" />
+        <module name="client" />
+        <module name="Commande" />
+        <module name="eurekaServer" />
+        <module name="gateway" />
+        <module name="promotion" />
+      </profile>
+      <profile name="Annotation profile for authService" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+        </processorPath>
+        <module name="authService" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="gatway" target="17" />
+      <module name="Promotionss" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Commande" options="-parameters" />
+      <module name="Fournisseur" options="-parameters" />
+      <module name="GmailApi" options="-parameters" />
+      <module name="Promotionss" options="-parameters" />
+      <module name="Restaurant" options="-parameters" />
+      <module name="annonce" options="-parameters" />
+      <module name="authService" options="-parameters" />
+      <module name="client" options="" />
+      <module name="config-server" options="-parameters" />
+      <module name="config-server (1) (esprit)" options="-parameters" />
+      <module name="eurekaServer" options="-parameters" />
+      <module name="gateway" options="-parameters" />
+      <module name="gatway" options="-parameters" />
+      <module name="promotion" options="-parameters" />
+    </option>
+  </component>
+</project>
