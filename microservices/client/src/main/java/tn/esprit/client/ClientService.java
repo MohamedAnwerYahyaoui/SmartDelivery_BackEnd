@@ -1,10 +1,10 @@
 package tn.esprit.client;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.client.Entity.Client;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClientService {
@@ -58,11 +58,12 @@ public class ClientService {
 
 
     public Client findBynom(String nom){
-
-
         return cr.findClientByNom(nom);
+    }
 
 
+    public Client findById(Long id){
+        return cr.findById(id).get();
     }
 
 

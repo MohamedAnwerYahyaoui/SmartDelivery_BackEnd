@@ -48,7 +48,7 @@ public class ClientController {
 
 
 
-    @GetMapping("/findbynom/{nom}")
+    @GetMapping("/findbynomm/{nom}")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Client> findbynom(@PathVariable String nom) {
         return new ResponseEntity<>(clientService.findBynom(nom), HttpStatus.OK);
@@ -57,9 +57,24 @@ public class ClientController {
 
 
 
-
-
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<Client> findbyId(@PathVariable Long id) {
+        return new ResponseEntity<>(clientService.findById(id), HttpStatus.OK);
     }
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Client> findById(@PathVariable Long id) {
+//        Client client = clientService.findById(id);
+//        return ResponseEntity.ok(client);
+//    }
+
+
+
+
+
+
+
+}
 
 
 

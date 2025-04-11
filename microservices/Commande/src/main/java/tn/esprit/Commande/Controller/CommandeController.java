@@ -47,11 +47,11 @@ public class CommandeController {
 
 
 
-    @PostMapping(value = "/{id}/{nom}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/{id}/{idc}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public void confirmerCommande(@PathVariable Long id,@PathVariable String nom){
+    public void confirmerCommande(@PathVariable Long id,@PathVariable Long idc){
 
-        commandeService.confirmerCommande(id, nom);
+        commandeService.confirmerCommande(id, idc);
     }
 
 

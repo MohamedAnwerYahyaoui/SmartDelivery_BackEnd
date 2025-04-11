@@ -21,6 +21,12 @@ public class Client {
     public Client() {
     }
 
+    public Client(Long id, String nom, String mail, String adresse) {
+        this.id = id;
+        this.nom = nom;
+        this.mail = mail;
+        this.adresse = adresse;
+    }
 
     public Client(String nom, String mail, String adresse) {
         this.nom = nom;

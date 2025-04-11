@@ -63,35 +63,40 @@ private final ClientClient client;
 
 
 
-    public void confirmerCommande(Long idCommande, String nom) {
+    public void confirmerCommande(Long idCommande, Long clientId) {
         Commande commande = cr.findById(idCommande)
                 .orElseThrow(() -> new RuntimeException("Commande not found"));
 
-        // Debug: Ajoutez ce log
-        System.out.println("Recherche du client: " + nom);
+        System.out.println("Recherche du client avec l'ID: " + clientId);
 
-        ClientRequest cl = client.findbynom(nom);
+        // Utilisation de la méthode findById pour récupérer le client par ID
+        ClientRequest cl = client.findById(clientId).getBody(); // Le client est retourné dans le body de la réponse
 
-        // Debug: Affichez tout l'objet client reçu
         System.out.println("Client reçu: " + cl);
 
         if (cl == null) {
-            throw new RuntimeException("Client not found with nom: " + nom);
+            throw new RuntimeException("Client not found with ID: " + clientId);
         }
 
         try {
+            // Envoi de l'email de confirmation
+            EmailRequest e = new EmailRequest(cl.getAdresse(), "Confirmation de votre commande #" + commande.getIdCommande(),
+                    "Votre commande est en cours de préparation.");
             EmailRequest email = new EmailRequest(
-                    cl.getEmail(), // Utilisation dynamique de l'email du client
+                    cl.getEmail(),
                     "Confirmation de votre commande #" + commande.getIdCommande(),
                     "Votre commande est en cours de préparation."
-
             );
+
+            // Envoi des emails
+            emailClient.sendEmail(e);
             emailClient.sendEmail(email);
-            System.out.println("Email envoyé avec succès à adsenceatef@gmail.com");
+            System.out.println("Email envoyé avec succès à " + cl.getEmail());
         } catch (Exception e) {
             System.out.println("Erreur lors de l'envoi de l'email: " + e.getMessage());
         }
     }
+
 
 //    public void confirmerCommande(Long idCommande,String nom) {
 //        Commande commande = cr.findById(idCommande).get();
