@@ -1,5 +1,11 @@
 package tn.esprit.Fournisseur.Service;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.apache.poi.ss.usermodel.*;
@@ -186,5 +192,43 @@ public class FournisseurService {
 
         System.out.println("Statistiques générées: " + stats);
         return stats;
+    }
+    public ResponseEntity<byte[]> generateFournisseurQRCode(long id) {
+        try {
+            Optional<Fournisseur> fournisseurOpt = fr.findById(id);
+            if (fournisseurOpt.isEmpty()) {
+                return ResponseEntity.notFound().build();
+            }
+
+            Fournisseur fournisseur = fournisseurOpt.get();
+            String qrContent = String.format(
+                    "Fournisseur: %s\nAdresse: %s\nEmail: %s\nTéléphone: %s",
+                    fournisseur.getNomFournisseur(),
+                    fournisseur.getAdresse(),
+                    fournisseur.getEmail(),
+                    fournisseur.getNumtel()
+            );
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            Map<EncodeHintType, Object> hints = new HashMap<>();
+            hints.put(EncodeHintType.MARGIN, 2);
+            hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.L);
+
+            BitMatrix matrix = new QRCodeWriter().encode(
+                    qrContent,
+                    BarcodeFormat.QR_CODE,
+                    200, 200, hints);
+
+            MatrixToImageWriter.writeToStream(matrix, "PNG", baos);
+
+            System.out.println("QR Code généré avec succès pour le fournisseur ID: " + id);
+            return ResponseEntity.ok()
+                    .header("Content-Disposition", "attachment; filename=fournisseur_qrcode_" + id + ".png")
+                    .body(baos.toByteArray());
+
+        } catch (Exception e) {
+            System.err.println("Erreur génération QR Code: " + e.getMessage());
+            return ResponseEntity.internalServerError().build();
+        }
     }
 }

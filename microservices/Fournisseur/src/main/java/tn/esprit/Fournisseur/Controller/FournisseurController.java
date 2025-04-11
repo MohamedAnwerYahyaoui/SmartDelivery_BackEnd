@@ -70,4 +70,9 @@ public class FournisseurController {
         System.out.println("Récupération des statistiques des fournisseurs");
         return new ResponseEntity<>(fournisseurService.getStatistiques(), HttpStatus.OK);
     }
+    @GetMapping(value = "/{id}/qrcode", produces = MediaType.IMAGE_PNG_VALUE)
+    public ResponseEntity<byte[]> generateQRCode(@PathVariable long id) {
+        System.out.println("Génération QR Code pour le fournisseur ID: " + id);
+        return fournisseurService.generateFournisseurQRCode(id);
+    }
 }
