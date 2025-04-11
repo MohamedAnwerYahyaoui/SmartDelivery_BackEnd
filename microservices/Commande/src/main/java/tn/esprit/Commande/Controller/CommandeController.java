@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.Commande.Entity.Commande;
 import tn.esprit.Commande.Entity.Status;
+import tn.esprit.Commande.Repository.CommandeRepo;
 import tn.esprit.Commande.Service.CommandeService;
 
 import java.util.List;
@@ -15,9 +16,11 @@ import java.util.List;
 public class CommandeController {
 
     private final CommandeService commandeService;
+    private final CommandeRepo commandeRepo;
 
-    public CommandeController(CommandeService commandeService){
+    public CommandeController(CommandeService commandeService, CommandeRepo commandeRepo){
         this.commandeService=commandeService;
+        this.commandeRepo = commandeRepo;
     }
 
     @GetMapping("/list")
@@ -49,6 +52,13 @@ public class CommandeController {
     @GetMapping("/total-amount")
     public ResponseEntity<Float> getTotalAmount(@RequestParam(value = "status", required = false) Status status) {
         return new ResponseEntity<>(commandeService.calculateTotalAmount(status), HttpStatus.OK);
+    }
+    @GetMapping("/status")
+    public ResponseEntity<List<Commande>> getCommandesByStatus(@RequestParam(value = "status", required = false) Status status) {
+        if (status == null) {
+            return new ResponseEntity<>(commandeService.findAll(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(commandeService.findByStatus(status), HttpStatus.OK);
     }
 
 }

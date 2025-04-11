@@ -54,6 +54,9 @@ public class CommandeService {
         List<Commande> commandes = (status != null) ? commandeRepo.findByStatus(status) : commandeRepo.findAll();
         return (float) commandes.stream().mapToDouble(Commande::getMantantTotal).sum();
     }
+    public List<Commande> findByStatus(Status status) {
+        return commandeRepo.findByStatus(status);
+    }
 }
 
 
