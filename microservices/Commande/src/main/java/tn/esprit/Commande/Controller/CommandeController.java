@@ -5,6 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.Commande.Entity.Commande;
+import tn.esprit.Commande.Entity.Status;
 import tn.esprit.Commande.Service.CommandeService;
 
 import java.util.List;
@@ -43,6 +44,11 @@ public class CommandeController {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<String> deleteCommande(@PathVariable(value = "id") long id) {
         return new ResponseEntity<>(commandeService.deleteCommande(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/total-amount")
+    public ResponseEntity<Float> getTotalAmount(@RequestParam(value = "status", required = false) Status status) {
+        return new ResponseEntity<>(commandeService.calculateTotalAmount(status), HttpStatus.OK);
     }
 
 }

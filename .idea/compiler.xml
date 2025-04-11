@@ -8,8 +8,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="annonce" />
         <module name="Restaurant" />
-        <module name="Commande" />
         <module name="Fournisseur" />
+        <module name="Commande" />
         <module name="eurekaServer" />
         <module name="gateway" />
       </profile>

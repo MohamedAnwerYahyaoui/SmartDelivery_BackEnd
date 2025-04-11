@@ -2,6 +2,7 @@ package tn.esprit.Commande.Service;
 
 import org.springframework.stereotype.Service;
 import tn.esprit.Commande.Entity.Commande;
+import tn.esprit.Commande.Entity.Status;
 import tn.esprit.Commande.Repository.CommandeRepo;
 
 import java.util.List;
@@ -9,10 +10,12 @@ import java.util.List;
 @Service
 public class CommandeService {
 
+    private final CommandeRepo commandeRepo;
     private CommandeRepo cr;
 
-    public CommandeService(CommandeRepo cr){
+    public CommandeService(CommandeRepo cr, CommandeRepo commandeRepo){
         this.cr=cr;
+        this.commandeRepo = commandeRepo;
     }
 
 
@@ -45,6 +48,11 @@ public class CommandeService {
             return "commande supprimé";
         } else
             return "commande non supprimé";
+    }
+
+    public float calculateTotalAmount(Status status) {
+        List<Commande> commandes = (status != null) ? commandeRepo.findByStatus(status) : commandeRepo.findAll();
+        return (float) commandes.stream().mapToDouble(Commande::getMantantTotal).sum();
     }
 }
 
