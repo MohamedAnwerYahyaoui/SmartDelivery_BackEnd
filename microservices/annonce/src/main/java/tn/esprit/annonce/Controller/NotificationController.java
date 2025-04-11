@@ -79,7 +79,7 @@ public class NotificationController {
         List<Notification> history = nr.getHistory(nomClient);
         return new ResponseEntity<>(history, HttpStatus.OK);
     }
-    // Endpoint pour l'envoi groupé de notifications personnalisées
+    //   l'envoi groupé de notifications personnalisées
     @PostMapping(value = "/group", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Notification>> sendGroupNotifications(@RequestBody GroupNotification request) {
         List<Notification> notifications = nr.sendGroupNotifications(request);
