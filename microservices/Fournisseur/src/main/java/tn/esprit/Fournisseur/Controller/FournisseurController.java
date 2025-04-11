@@ -16,7 +16,7 @@ public class FournisseurController {
 
     public FournisseurController(FournisseurService fournisseurService) {
         this.fournisseurService = fournisseurService;
-        System.out.println("Controller Fournisseur initialisé avec service d'email et PDF");
+        System.out.println("Controller Fournisseur initialisé avec service d'email, PDF et Excel");
     }
 
     @GetMapping("/list")
@@ -57,5 +57,11 @@ public class FournisseurController {
     public ResponseEntity<byte[]> generatePdf(@PathVariable long id) {
         System.out.println("Génération PDF pour le fournisseur ID: " + id);
         return fournisseurService.generateFournisseurPdf(id);
+    }
+
+    @GetMapping(value = "/{id}/excel", produces = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+    public ResponseEntity<byte[]> generateExcel(@PathVariable long id) {
+        System.out.println("Génération Excel pour le fournisseur ID: " + id);
+        return fournisseurService.generateFournisseurExcel(id);
     }
 }

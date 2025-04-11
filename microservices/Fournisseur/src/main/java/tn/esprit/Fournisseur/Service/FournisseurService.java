@@ -2,6 +2,8 @@ package tn.esprit.Fournisseur.Service;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,7 @@ import tn.esprit.Fournisseur.Entity.Fournisseur;
 import tn.esprit.Fournisseur.Repository.FournisseurRepository;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -113,6 +116,54 @@ public class FournisseurService {
             return "Fournisseur supprimé";
         } else {
             return "Fournisseur non supprimé";
+        }
+    }
+    public ResponseEntity<byte[]> generateFournisseurExcel(long id) {
+        try {
+            Optional<Fournisseur> fournisseurOpt = fr.findById(id);
+            if (fournisseurOpt.isEmpty()) {
+                return ResponseEntity.notFound().build();
+            }
+
+            Fournisseur fournisseur = fournisseurOpt.get();
+            Workbook workbook = new XSSFWorkbook();
+            Sheet sheet = workbook.createSheet("Fournisseur");
+
+            // Create header row
+            Row headerRow = sheet.createRow(0);
+            headerRow.createCell(0).setCellValue("Champ");
+            headerRow.createCell(1).setCellValue("Valeur");
+
+            // Add data rows
+            String[][] data = {
+                    {"Nom", fournisseur.getNomFournisseur()},
+                    {"Adresse", fournisseur.getAdresse()},
+                    {"Email", fournisseur.getEmail()},
+                    {"Téléphone", String.valueOf(fournisseur.getNumtel())} // Conversion en String
+            };
+
+            for (int i = 0; i < data.length; i++) {
+                Row row = sheet.createRow(i + 1);
+                row.createCell(0).setCellValue(data[i][0]);
+                row.createCell(1).setCellValue(data[i][1]);
+            }
+
+            // Auto-size columns
+            for (int i = 0; i < 2; i++) {
+                sheet.autoSizeColumn(i);
+            }
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            workbook.write(baos);
+            workbook.close();
+
+            System.out.println("Excel généré avec succès pour le fournisseur ID: " + id);
+            return ResponseEntity.ok()
+                    .header("Content-Disposition", "attachment; filename=fournisseur_" + id + ".xlsx")
+                    .body(baos.toByteArray());
+        } catch (IOException e) {
+            System.err.println("Erreur lors de la génération du Excel: " + e.getMessage());
+            return ResponseEntity.internalServerError().build();
         }
     }
 }
