@@ -1,52 +1,74 @@
-🚀 Smart Delivery — La Révolution de la Livraison Intelligente
-Bienvenue dans Smart Delivery, une solution de nouvelle génération pour la commande et la livraison de repas. Cette plateforme innovante connecte clients, restaurants et livreurs dans un écosystème fluide, intelligent et ultra-efficace.
+🚀 SmartDelivery – Module Notification
+Java Spring Boot | License
 
-Avec Smart Delivery, commander un repas devient une expérience rapide, intelligente et personnalisée, que vous soyez client affamé, restaurant dynamique, ou livreur motivé.
+Microservice complet pour la gestion et la diffusion des notifications dans l’écosystème SmartDelivery, offrant des fonctionnalités avancées de suivi, de reporting et d’intégration en temps réel.
 
-🌟 Pourquoi Smart Delivery ?
-Parce que la livraison de repas mérite mieux qu’une simple application.
-Smart Delivery, c’est :
+✨ Fonctionnalités Clés
+Fonctionnalité	Description
+Gestion des Notifications	CRUD complet (création, lecture, mise à jour, suppression) avec validation
+Envoi Groupé Personnalisé	Envoi de plusieurs notifications via un template dynamique (placeholders)
+Historique par Client	Liste chronologique des notifications pour un client, triée par date décroissante
+Statistiques & Analytics	Endpoint de statistiques globales (total, lues, non lues)
+Diffusion en Temps Réel	Intégration WebSocket/STOMP pour push instantané (si le client est connecté)
+Marquage Lu / Non Lu	Possibilité de marquer une notification comme lue ou non lue
+🔍 Aperçu des Endpoints API
+Gestion des Notifications
+GET /notification
+Liste complète des notifications
 
-🍽️ Des restaurants connectés, qui proposent leurs menus en quelques clics.
+GET /notification/{id}
+Récupération des détails d’une notification
 
-🚴 Des livreurs assistés par une carte intelligente, optimisée grâce à une app Python qui scrape les itinéraires.
+POST /notification/ajouter
+Ajout d’une nouvelle notification
 
-🔔 Des notifications en temps réel, pour ne jamais perdre de vue votre commande.
+PUT /notification/{id}
+Mise à jour d’une notification
 
-🔒 Une sécurité à toute épreuve, grâce à Keycloak pour une authentification robuste.
+DELETE /notification/{id}
+Suppression d’une notification
 
-📦 Des fournisseurs intégrés, pour que les restaurants ne manquent jamais d'ingrédients.
+Fonctionnalités Avancées
+POST /notification/group
+Envoi groupé de notifications personnalisées à l’aide d’un template
 
-⚡ Une architecture microservices performante, prête à évoluer avec vos besoins.
+GET /notification/history/{nomClient}
+Historique des notifications d’un client, trié par date décroissante
 
-🧠 Une Architecture Moderne
-Développé en microservices avec Spring Boot, chaque composant est indépendant, scalable et facile à maintenir.
+GET /notification/stats
+Statistiques globales (nombre total, lues, non lues)
 
-🔧 Composants Techniques
-Service	Description
-🛒 Commande	Gère les commandes entre client et restaurant
-🍴 Fournisseur	Permet aux restaurants de commander leurs produits
-📢 Annonce	Notifie les clients du statut de leur livraison
-🧍 User	Gère les profils utilisateurs (clients, livreurs, restos)
-🧭 Scraping Python	Aide le livreur à trouver le chemin optimal via la carte
-🌐 API Gateway	Point d’entrée sécurisé vers tous les services
-🧭 Eureka Server	Découverte automatique des services
-⚙️ Config Server	Configuration centralisée de tous les services
-🔐 Keycloak	Authentification & gestion des rôles
-🐳 Déploiement Facile avec Docker
-Tout le projet est conteneurisé et déployé sur DockerHub, ce qui te permet de le lancer en un seul clic, prêt à fonctionner !
+POST /notification/{id}/markAsRead
+Marquer une notification comme lue
+
+POST /notification/{id}/markAsUnread
+Marquer une notification comme non lue
+
+Diffusion en Temps Réel
+WebSocket :
+Connexion à l’endpoint ws://{host}:{port}/ws-notifications
+
+/app/sendNotification : envoi de messages STOMP au serveur
+
+/topic/notifications : réception en temps réel des notifications
+
+🛠 Configuration Technique
+Prérequis
+Java 17+
+
+Maven 3.8+
+
+MySQL 8.0 (ou autre base SQL)
+
+Accès SMTP si vous étendez le microservice pour envoyer des emails
+
+Installation
+Cloner le dépôt :
+
+bash
+Copier
+git clone https://github.com/MohamedAnwerYahyaoui/SmartDelivery_BackEnd.git
+cd SmartDelivery_BackEnd
 
 
-🔥 Ce que vous allez adorer
-✅ Interface simple & intuitive pour commander en quelques secondes
 
-🧠 Livraison plus rapide grâce à l’intelligence de la carte
-
-📈 Microservices testés, découplés et prêts pour la mise à l’échelle
-
-🔐 Authentification sécurisée pour chaque utilisateur
-
-🚀 Code propre, modulaire, prêt pour le cloud
-
-👨‍💻 À propos du développeur
-Ce projet est né d'une passion pour l'efficacité, l'expérience utilisateur et l'architecture logicielle moderne. Il a été conçu, développé et déployé avec soin pour répondre aux défis réels des services de livraison d’aujourd’hui.
