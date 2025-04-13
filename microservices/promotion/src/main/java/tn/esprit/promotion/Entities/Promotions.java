@@ -13,7 +13,7 @@ public class Promotions {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 private Long id;
     private String Description;
-    private String date;
+    private LocalDateTime date;
     private String offre;
     private int prix;
 
@@ -37,11 +37,11 @@ private Long id;
         Description = description;
     }
 
-    public ChronoLocalDateTime<?> getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
