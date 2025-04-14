@@ -1,20 +1,29 @@
 package tn.esprit.annonce.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import tn.esprit.annonce.Entity.Notification;
+
+import java.security.Principal;
 
 @Controller
 public class NotificationWebSocketController {
 
-    // Quand un message est envoyé à "/app/sendNotification",
-    // il est diffusé à tous les abonnés du topic "/topic/notifications"
-    @MessageMapping("/sendNotification")
-    @SendTo("/topic/notifications")
-    public Notification broadcastNotification(Notification notification) throws Exception {
-        // Optionnel : simuler un délai de traitement
-        Thread.sleep(500);
-        return notification;
+    private final SimpMessagingTemplate messagingTemplate;
+
+    @Autowired
+    public NotificationWebSocketController(SimpMessagingTemplate messagingTemplate) {
+        this.messagingTemplate = messagingTemplate;
     }
+
+    @MessageMapping("/sendNotification")
+    public void sendNotification(@Payload Notification notification, Principal principal) {
+        // Si pas d'auth, principal = null => on met "demoUser"
+        String username = (principal != null) ? principal.getName() : "demoUser";
+        messagingTemplate.convertAndSendToUser(username, "/queue/notifications", notification);
+    }
+
 }

@@ -12,7 +12,7 @@ public class Notification {
     @GeneratedValue
     private Long idNotification;
     private String nomClient;
-    private String Contenu;
+    private String contenu;
     private Date date;
     @Column(name = "is_read", nullable = false)
     private boolean read;
@@ -23,7 +23,7 @@ public class Notification {
 
     public Notification(String nomClient, String contenu, Date date,boolean read) {
         this.nomClient = nomClient;
-        this.Contenu = contenu;
+        this.contenu = contenu;
         this.date = date;
         this.read = read;
 
@@ -46,11 +46,11 @@ public class Notification {
     }
 
     public String getContenu() {
-        return Contenu;
+        return contenu;
     }
 
     public void setContenu(String contenu) {
-        Contenu = contenu;
+        this.contenu = contenu;
     }
 
     public Date getDate() {

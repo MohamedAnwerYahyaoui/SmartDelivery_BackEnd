@@ -41,18 +41,18 @@ public class NotificationController {
     public ResponseEntity<Notification> createNotification(@RequestBody Notification notification) {
         return new ResponseEntity<>(nr.ajouterNotification(notification), HttpStatus.OK);
     }
-    @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Notification> updateNotification(@PathVariable(value = "id") long id,
                                                        @RequestBody Notification notification){
         return new ResponseEntity<>(nr.updateNotification(id, notification),
                 HttpStatus.OK);
     }
-    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<String> deleteNotification(@PathVariable(value = "id") long id) {
         return new ResponseEntity<>(nr.deleteNotification(id), HttpStatus.OK);
     }
+
     // Endpoint pour marquer une notification comme lue
     @PostMapping(value = "/{id}/markAsRead", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Notification> markNotificationAsRead(@PathVariable("id") Long id) {
