@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDateTime;
 
 @Entity
@@ -61,12 +62,11 @@ private Long id;
         this.prix = prix;
     }
 
-    public Promotions(String description, String date, String offre, int prix) {
+    public Promotions(Long id, String description, LocalDateTime date, String offre, int prix) {
+        this.id = id;
         Description = description;
         this.date = date;
         this.offre = offre;
         this.prix = prix;
     }
-
-
 }

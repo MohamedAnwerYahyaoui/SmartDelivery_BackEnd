@@ -1,9 +1,6 @@
 package tn.esprit.Fournisseur.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Fournisseur {
@@ -13,9 +10,19 @@ public class Fournisseur {
     private String NomFournisseur;
     private String adresse;
     private int numtel;
+    @Column(unique = true)
+    private String email;
 
 
     public Fournisseur() {
+    }
+    // Avec getter et setter
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Long getIdFournisseur() {

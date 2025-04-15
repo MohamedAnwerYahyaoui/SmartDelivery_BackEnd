@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.Restaurant.OpenFeign.Commande;
 import tn.esprit.Restaurant.Service.RestaurantService;
 import tn.esprit.Restaurant.entity.Restaurant;
 
@@ -26,6 +27,10 @@ public class RestaurantController {
     }
 
 
+    @RequestMapping("/commande")
+    public List<Commande> getAllCommande() {
+        return rs.getCommande();
+    }
 
 
     @PostMapping("/ajouter")

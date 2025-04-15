@@ -20,7 +20,7 @@ public class GatwayApplication {
 	public RouteLocator customRouteLocator(RouteLocatorBuilder builder){
 
 		return builder.routes()
-				.route("Commande",r->r.path("/commandes/**").uri("lb://Commande"))
+				.route("Commande",r->r.path("/commande/**").uri("lb://Commande"))
 		        .route("Fournisseur",r->r.path("/fournisseur/**").uri("lb://Fournisseur"))
 				.route("Restaurant",r->r.path("/restaurant/**").uri("lb://Restaurant"))
 				.route("Repas",r->r.path("/repas/**").uri("lb://Repas"))

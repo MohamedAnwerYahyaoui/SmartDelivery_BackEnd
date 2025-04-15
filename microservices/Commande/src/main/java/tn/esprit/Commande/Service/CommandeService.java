@@ -4,26 +4,25 @@ import feign.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.Commande.Entity.Commande;
+import tn.esprit.Commande.Entity.Status;
 import tn.esprit.Commande.OpenFeign.ClientClient;
 import tn.esprit.Commande.OpenFeign.ClientRequest;
 import tn.esprit.Commande.OpenFeign.EmailClient;
 import tn.esprit.Commande.OpenFeign.EmailRequest;
 import tn.esprit.Commande.Repository.CommandeRepo;
+import java.util.*;
+import java.util.logging.Logger;
 
-import java.util.List;
 
 @Service
 public class CommandeService {
-private final ClientClient client;
+    private static final Logger logger = Logger.getLogger(CommandeService.class.getName());
+    private final CommandeRepo commandeRepo;
     private CommandeRepo cr;
 
-    @Autowired
-    private EmailClient emailClient;
-
-    public CommandeService(CommandeRepo cr,EmailClient emailClient,ClientClient client){
+    public CommandeService(CommandeRepo cr, CommandeRepo commandeRepo){
         this.cr=cr;
-        this.emailClient=emailClient;
-        this.client=client;
+        this.commandeRepo = commandeRepo;
     }
 
 
@@ -58,75 +57,37 @@ private final ClientClient client;
             return "commande non supprimé";
     }
 
+    public float calculateTotalAmount(Status status) {
+        List<Commande> commandes = (status != null) ? commandeRepo.findByStatus(status) : commandeRepo.findAll();
+        return (float) commandes.stream().mapToDouble(Commande::getMantantTotal).sum();
+    }
+    public List<Commande> findByStatus(Status status) {
+        return commandeRepo.findByStatus(status);
+    }
+    public Map<String, Object> getStatistics() {
+        Map<String, Object> stats = new HashMap<>();
 
-
-
-
-
-    public void confirmerCommande(Long idCommande, String nom) {
-        Commande commande = cr.findById(idCommande)
-                .orElseThrow(() -> new RuntimeException("Commande not found"));
-
-        // Debug: Ajoutez ce log
-        System.out.println("Recherche du client: " + nom);
-
-        ClientRequest cl = client.findbynom(nom);
-
-        // Debug: Affichez tout l'objet client reçu
-        System.out.println("Client reçu: " + cl);
-
-        if (cl == null) {
-            throw new RuntimeException("Client not found with nom: " + nom);
+        // Count by status
+        Map<String, Long> countByStatus = new HashMap<>();
+        for (Status status : Status.values()) {
+            long count = commandeRepo.findByStatus(status).size();
+            countByStatus.put(status.toString(), count);
         }
+        stats.put("countByStatus", countByStatus);
 
-        try {
-            EmailRequest email = new EmailRequest(
-                    cl.getEmail(), // Utilisation dynamique de l'email du client
-                    "Confirmation de votre commande #" + commande.getIdCommande(),
-                    "Votre commande est en cours de préparation."
+        // Average order amount
+        List<Commande> allCommandes = commandeRepo.findAll();
+        double averageAmount = allCommandes.stream()
+                .mapToDouble(Commande::getMantantTotal)
+                .average()
+                .orElse(0.0);
+        stats.put("averageAmount", averageAmount);
 
-            );
-            emailClient.sendEmail(email);
-            System.out.println("Email envoyé avec succès à adsenceatef@gmail.com");
-        } catch (Exception e) {
-            System.out.println("Erreur lors de l'envoi de l'email: " + e.getMessage());
-        }
+        logger.info("Statistics computed: " + stats);
+        return stats;
     }
 
-//    public void confirmerCommande(Long idCommande,String nom) {
-//        Commande commande = cr.findById(idCommande).get();
-//        ClientRequest cl =client.findbynom(nom);
-//
-//
-//        EmailRequest email = new EmailRequest(
-//                cl.getEmail(),
-//                "Confirmation de votre commande",
-//                "Votre commande #" + commande.getIdCommande() + " est en cours de préparation."
-//        );
-//
-//        emailClient.sendEmail(email);
-//    }
-//
-//
-//
-//
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,6 +1,9 @@
 package tn.esprit.Restaurant.Service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tn.esprit.Restaurant.OpenFeign.Commande;
+import tn.esprit.Restaurant.OpenFeign.CommandeClient;
 import tn.esprit.Restaurant.Repository.RestaurantRepo;
 import tn.esprit.Restaurant.entity.Restaurant;
 
@@ -32,6 +35,11 @@ public class RestaurantService {
     }
 
 
+    @Autowired
+    private CommandeClient commandeServiceClient;
+    public List<Commande> getCommande() {
+        return commandeServiceClient.getAllListCommande();
+    }
 
 
 

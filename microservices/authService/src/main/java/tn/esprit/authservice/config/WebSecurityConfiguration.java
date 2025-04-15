@@ -40,10 +40,10 @@ public class WebSecurityConfiguration {
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/logout").permitAll()
                         // User API Endpoints
-                        .requestMatchers(HttpMethod.POST, "/users/add").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/users/add").hasAnyAuthority("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/users/addClient").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/users/*/send-verification-email").permitAll()
-                        .requestMatchers(HttpMethod.DELETE, "/users/*").permitAll()
+                        .requestMatchers(HttpMethod.DELETE, "/users/*").hasAnyAuthority("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/users/forgot-password").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/users/*").permitAll()
                         .requestMatchers(HttpMethod.GET, "/users/*/roles").permitAll()
