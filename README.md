@@ -1,141 +1,33 @@
-# 🧑‍💼 User Management Microservice
+🚀 Smart Delivery — La Révolution de la Livraison Intelligente Bienvenue dans Smart Delivery, une solution de nouvelle génération pour la commande et la livraison de repas. Cette plateforme innovante connecte clients, restaurants et livreurs dans un écosystème fluide, intelligent et ultra-efficace.
 
-Welcome to the **User Management Microservice**, a critical component of a modern **Construction Management System** built using a microservices architecture. This microservice is responsible for handling **user authentication, registration, and role-based authorization** using **Keycloak** as an Identity and Access Management (IAM) solution.
+Avec Smart Delivery, commander un repas devient une expérience rapide, intelligente et personnalisée, que vous soyez client affamé, restaurant dynamique, ou livreur motivé.
 
----
+🌟 Pourquoi Smart Delivery ? Parce que la livraison de repas mérite mieux qu’une simple application. Smart Delivery, c’est :
 
-## 🧭 Project Overview
+🍽️ Des restaurants connectés, qui proposent leurs menus en quelques clics.
 
-This microservice manages all **user-related operations**, such as:
-- User registration and login
-- Client account creation
-- Password recovery
-- Fetching and updating user information
-- Role creation, assignment, and management
+🚴 Des livreurs assistés par une carte intelligente, optimisée grâce à une app Python qui scrape les itinéraires.
 
-All of these actions are secured and powered by **Keycloak**, ensuring a robust, centralized, and secure user management flow.
+🔔 Des notifications en temps réel, pour ne jamais perdre de vue votre commande.
 
----
+🔒 Une sécurité à toute épreuve, grâce à Keycloak pour une authentification robuste.
 
-## 🧱 Architecture
+📦 Des fournisseurs intégrés, pour que les restaurants ne manquent jamais d'ingrédients.
 
-This microservice is a part of a distributed microservice system built using:
+⚡ Une architecture microservices performante, prête à évoluer avec vos besoins.
 
-- `Spring Boot`: for creating the service logic
-- `Spring Cloud Gateway`: for API routing and centralized entry point
-- `Eureka Server`: for service discovery
-- `Spring Cloud Config`: for centralized configuration
-- `Keycloak`: for Identity and Access Management
-- `Docker & Docker Compose`: for containerization and orchestration
-- `Angular`: frontend client consuming this service
+🧠 Une Architecture Moderne Développé en microservices avec Spring Boot, chaque composant est indépendant, scalable et facile à maintenir.
 
-The entire architecture is built with modularity, scalability, and security in mind.
+🔧 Composants Techniques Service Description 🛒 Commande Gère les commandes entre client et restaurant 🍴 Fournisseur Permet aux restaurants de commander leurs produits 📢 Annonce Notifie les clients du statut de leur livraison 🧍 User Gère les profils utilisateurs (clients, livreurs, restos) 🧭 Scraping Python Aide le livreur à trouver le chemin optimal via la carte 🌐 API Gateway Point d’entrée sécurisé vers tous les services 🧭 Eureka Server Découverte automatique des services ⚙️ Config Server Configuration centralisée de tous les services 🔐 Keycloak Authentification & gestion des rôles 🐳 Déploiement Facile avec Docker Tout le projet est conteneurisé et déployé sur DockerHub, ce qui te permet de le lancer en un seul clic, prêt à fonctionner !
 
----
+🔥 Ce que vous allez adorer ✅ Interface simple & intuitive pour commander en quelques secondes
 
-## 🛡️ Keycloak Integration
+🧠 Livraison plus rapide grâce à l’intelligence de la carte
 
-**Keycloak** is an open-source Identity and Access Management solution for modern applications and services.
+📈 Microservices testés, découplés et prêts pour la mise à l’échelle
 
-### 🔐 How Keycloak Works in This Microservice:
+🔐 Authentification sécurisée pour chaque utilisateur
 
-1. **Authentication**:  
-   When a user logs in, Keycloak verifies credentials and issues a **JWT (JSON Web Token)** and a **refresh token**.
+🚀 Code propre, modulaire, prêt pour le cloud
 
-2. **Authorization**:  
-   Based on the user's roles (assigned in Keycloak), they get access to specific endpoints or features.
-
-3. **User Management**:  
-   This microservice communicates with Keycloak via its Admin REST API to:
-    - Create new users
-    - Update user details
-    - Assign or remove roles
-    - Delete users
-    - Handle password reset
-    - Fetch user and role information
-
-Keycloak acts as the **Single Source of Truth** for all identity and access concerns, enabling stateless, token-based security across microservices.
-
----
-
-## 🚀 Exposed REST API Endpoints
-
-### 🔑 Authentication Endpoints
-
-| Method | Endpoint       | Description              |
-|--------|----------------|--------------------------|
-| POST   | `/login`       | Authenticates a user and returns a token |
-| POST   | `/logout`      | Invalidates the refresh token and logs out |
-
-### 👥 User Management
-
-| Method | Endpoint           | Description                   |
-|--------|--------------------|-------------------------------|
-| POST   | `/add`             | Create a new user             |
-| POST   | `/addClient`       | Create a new client user      |
-| GET    | `/all`             | Retrieve all users            |
-| GET    | `/{id}`            | Get user by ID                |
-| PUT    | `/{userId}`        | Update an existing user       |
-| DELETE | `/{id}`            | Delete a user by ID           |
-| PUT    | `/forgot-password` | Initiate password reset using email |
-| GET    | `/{id}/roles`      | Get user roles by user ID     |
-
-### 🛡️ Role Management
-
-| Method | Endpoint                          | Description                        |
-|--------|-----------------------------------|------------------------------------|
-| POST   | `/add`                            | Create a new role                  |
-| GET    | `/all`                            | Retrieve all roles                 |
-| PUT    | `/{originalRoleName}`             | Update a role                      |
-| DELETE | `/{roleName}`                     | Delete a role                      |
-| PUT    | `/assign/users/{userId}`          | Assign role to user                |
-| DELETE | `/remove/users/{userId}`          | Remove role from user              |
-| GET    | `/role/{roleName}`                | Get role details by name           |
-| GET    | `/id/{roleId}`                    | Get role details by ID             |
-
----
-
-## 🧰 Technologies Used
-
-| Layer        | Technology         |
-|--------------|--------------------|
-| Backend      | Spring Boot, Spring Web |
-| Auth/IAM     | Keycloak           |
-| Service Discovery | Eureka Server     |
-| Gateway      | Spring Cloud Gateway |
-| Config       | Spring Cloud Config |
-| Containerization | Docker, Docker Compose |
-| Frontend     | Angular            |
-
----
-
-## 🐳 Dockerization
-
-This microservice is designed to run in containers and is part of a Dockerized environment:
-
-- Each microservice runs in its own container
-- Keycloak server is containerized and exposed to all services
-- `docker-compose.yml` is used to orchestrate services including:
-    - Spring Boot services
-    - Spring Gateway
-    - Eureka Discovery Server
-    - Spring Config Server
-  
-
-Example snippet from `docker-compose.yml` for authService:
-
-```yaml
-services:
-    authService-service:
-    build: ./microservices/authService
-    image: authManagement:latest
-    container_name: authManagementContainer
-    ports:
-      - "8070:8070"
-    depends_on:
-      - eureka
-      - gateway
-    environment:
-      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka:8076/eureka/
-    networks:
-      - microservices-network
+👨‍💻 À propos du développeur Ce projet est né d'une passion pour l'efficacité, l'expérience utilisateur et l'architecture logicielle moderne. Il a été conçu, développé et déployé avec soin pour répondre aux défis réels des services de livraison d’aujourd’hui.
