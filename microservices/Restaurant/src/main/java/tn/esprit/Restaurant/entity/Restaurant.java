@@ -1,25 +1,25 @@
 package tn.esprit.Restaurant.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
-
+@Table(name = "restaurant2")
 public class Restaurant {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idRestaurant;
     private float mantantTotale;
     private Boolean Status;
+    private String nomresto;
 
 
     public Restaurant() {
     }
 
-    public Restaurant(float mantantTotale, Boolean status) {
+    public Restaurant(float mantantTotale, Boolean status, String nomresto) {
         this.mantantTotale = mantantTotale;
-        Status = status;
+        this.Status = status;
+        this.nomresto=nomresto;
     }
 
     public Long getIdRestaurant() {
@@ -44,5 +44,13 @@ public class Restaurant {
 
     public void setStatus(Boolean status) {
         Status = status;
+    }
+
+    public String getNomresto() {
+        return nomresto;
+    }
+
+    public void setNomresto(String nomresto) {
+        this.nomresto = nomresto;
     }
 }

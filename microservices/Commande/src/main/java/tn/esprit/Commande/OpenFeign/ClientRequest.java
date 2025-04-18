@@ -5,17 +5,17 @@ public class ClientRequest {
 
     private String nom;
     private String adresse;
-    private String email;
+    private String mail;
 
 
     public ClientRequest() {
     }
 
 
-    public ClientRequest(String nom, String adresse, String email) {
+    public ClientRequest(String nom, String adresse, String mail) {
         this.nom = nom;
         this.adresse = adresse;
-        this.email = email;
+        this.mail = mail;
     }
 
 
@@ -35,11 +35,11 @@ public class ClientRequest {
         this.adresse = adresse;
     }
 
-    public String getEmail() {
-        return email;
+    public String getmail() {
+        return mail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setmail(String mail) {
+        this.mail = mail;
     }
 }

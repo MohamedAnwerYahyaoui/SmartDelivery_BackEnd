@@ -7,14 +7,21 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="GmailApi" />
+        <module name="userservice" />
+        <module name="Commande" />
+        <module name="discoveryserver" />
+        <module name="configserver" />
+        <module name="eurekaServer" />
+        <module name="apigateway" />
         <module name="annonce" />
         <module name="Restaurant" />
         <module name="Fournisseur" />
         <module name="config-server (1) (esprit)" />
-        <module name="GmailApi" />
+        <module name="management" />
+        <module name="advertisement" />
+        <module name="report" />
         <module name="client" />
-        <module name="Commande" />
-        <module name="eurekaServer" />
         <module name="gateway" />
         <module name="promotion" />
       </profile>
@@ -41,15 +48,22 @@
       <module name="GmailApi" options="-parameters" />
       <module name="Promotionss" options="-parameters" />
       <module name="Restaurant" options="-parameters" />
+      <module name="advertisement" options="-parameters" />
       <module name="annonce" options="-parameters" />
+      <module name="apigateway" options="-parameters" />
       <module name="authService" options="-parameters" />
       <module name="client" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="config-server (1) (esprit)" options="-parameters" />
+      <module name="configserver" options="-parameters" />
+      <module name="discoveryserver" options="-parameters" />
       <module name="eurekaServer" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="gatway" options="-parameters" />
+      <module name="management" options="-parameters" />
       <module name="promotion" options="-parameters" />
+      <module name="report" options="-parameters" />
+      <module name="userservice" options="-parameters" />
     </option>
   </component>
 </project>

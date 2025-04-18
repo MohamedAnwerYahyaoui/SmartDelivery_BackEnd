@@ -64,13 +64,11 @@ private final ClientClient client;
 
 
     public void confirmerCommande(Long idCommande, Long clientId) {
-        Commande commande = cr.findById(idCommande)
-                .orElseThrow(() -> new RuntimeException("Commande not found"));
+        Commande commande = cr.findById(idCommande).get();
 
         System.out.println("Recherche du client avec l'ID: " + clientId);
 
-        // Utilisation de la méthode findById pour récupérer le client par ID
-        ClientRequest cl = client.findById(clientId).getBody(); // Le client est retourné dans le body de la réponse
+        ClientRequest cl = client.findById(clientId); // Le client est retourné dans le body de la réponse
 
         System.out.println("Client reçu: " + cl);
 
@@ -80,10 +78,10 @@ private final ClientClient client;
 
         try {
             // Envoi de l'email de confirmation
-            EmailRequest e = new EmailRequest(cl.getAdresse(), "Confirmation de votre commande #" + commande.getIdCommande(),
+            EmailRequest e = new EmailRequest(cl.getmail(), "Confirmation de votre commande #" + commande.getIdCommande(),
                     "Votre commande est en cours de préparation.");
             EmailRequest email = new EmailRequest(
-                    cl.getEmail(),
+                    cl.getmail(),
                     "Confirmation de votre commande #" + commande.getIdCommande(),
                     "Votre commande est en cours de préparation."
             );
@@ -91,7 +89,7 @@ private final ClientClient client;
             // Envoi des emails
             emailClient.sendEmail(e);
             emailClient.sendEmail(email);
-            System.out.println("Email envoyé avec succès à " + cl.getEmail());
+            System.out.println("Email envoyé avec succès à " + cl.getmail());
         } catch (Exception e) {
             System.out.println("Erreur lors de l'envoi de l'email: " + e.getMessage());
         }

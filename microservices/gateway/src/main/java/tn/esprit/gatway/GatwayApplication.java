@@ -22,7 +22,21 @@ public class GatwayApplication {
 		return builder.routes()
 				.route("Commande",r->r.path("/commandes/**").uri("lb://Commande"))
 		        .route("Fournisseur",r->r.path("/fournisseur/**").uri("lb://Fournisseur"))
-				.route("Restaurant",r->r.path("/restaurant/**").uri("lb://Restaurant"))
+				//.route("Restaurant",r->r.path("/restaurant/**").uri("lb://Restaurant"))
+
+
+
+
+				.route("restaurant-route", r -> r.path("/api/restaurant/**")
+						.filters(f -> f.rewritePath("/api/restaurant/(?<segment>.*)", "/${segment}"))
+						.uri("lb://Restaurant"))
+
+
+
+
+
+
+
 				.route("Repas",r->r.path("/repas/**").uri("lb://Repas"))
 				.route("promotion",r->r.path("/pr/**").uri("lb://promotion"))
 				.route("AuthenticationMS",r->r.path("/auth/**").uri("lb://authService"))

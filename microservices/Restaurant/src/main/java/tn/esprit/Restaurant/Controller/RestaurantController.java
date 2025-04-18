@@ -11,6 +11,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/restaurant")
+@CrossOrigin(origins = "http://localhost:4200",
+        allowedHeaders = "*",
+        methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT,
+                RequestMethod.DELETE, RequestMethod.PATCH, RequestMethod.OPTIONS})
 public class RestaurantController {
 
     private final RestaurantService rs;
@@ -28,6 +32,21 @@ public class RestaurantController {
 
 
 
+    @PatchMapping("/{id}/toggle-status")
+    public ResponseEntity<Restaurant> toggleRestaurantStatus(@PathVariable Long id) {
+        try {
+            Restaurant updated = rs.toggleStatus(id);
+            return ResponseEntity.ok(updated);
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+
+
+
+
     @PostMapping("/ajouter")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Restaurant> createRestaurant(@RequestBody Restaurant restaurant) {
@@ -36,11 +55,11 @@ public class RestaurantController {
     @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Restaurant> updateRestaurant(@PathVariable(value = "id") long id,
-                                                   @RequestBody Restaurant restaurant){
+                                                       @RequestBody Restaurant restaurant) {
         return new ResponseEntity<>(rs.updateRestaurant(id, restaurant),
                 HttpStatus.OK);
     }
-    @PutMapping(value = "/find/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/find/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Restaurant> findRestaurant(@PathVariable(value = "id") long id
                                                       ){

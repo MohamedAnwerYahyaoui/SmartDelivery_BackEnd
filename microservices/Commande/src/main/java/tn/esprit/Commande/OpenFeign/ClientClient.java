@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 //@FeignClient(name = "client")
         //, url = "http://localhost:8066/client")
-@FeignClient(name = "client", url = "http://localhost:8066/client")
+@FeignClient(name = "client", url = "http://localhost:8777/client")
 public interface ClientClient {
 
 
@@ -22,7 +22,7 @@ public interface ClientClient {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<ClientRequest> findById(@PathVariable Long id);
+    ClientRequest findById(@PathVariable Long id);
 
 
 }

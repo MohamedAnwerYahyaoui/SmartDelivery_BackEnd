@@ -25,7 +25,12 @@ public class RestaurantService {
         return rr.findAll();
     }
 
+    public Restaurant toggleStatus(long id) {
+        Restaurant restaurant = findRestaurant(id);
+        restaurant.setStatus(!restaurant.getStatus());
 
+        return rr.save(restaurant);
+    }
 
     public Restaurant findRestaurant(long id) {
         return rr.findRestaurantByIdRestaurant(id);
@@ -40,6 +45,7 @@ public class RestaurantService {
             Restaurant restaurant = rr.findById(id).get();
             restaurant.setMantantTotale(newRestaurant.getMantantTotale());
             restaurant.setStatus(newRestaurant.getStatus());
+            restaurant.setNomresto(newRestaurant.getNomresto());
 
             return rr.save(restaurant);
         } else

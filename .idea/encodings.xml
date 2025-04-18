@@ -13,6 +13,15 @@
     <file url="file://$PROJECT_DIR$/microservices/config/config-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/microservices/eurekaServer/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/microservices/gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservices/keyclock/advertisement-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservices/keyclock/api-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservices/keyclock/configserver/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservices/keyclock/discoveryserver/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservices/keyclock/management-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservices/keyclock/report-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservices/keyclock/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservices/keyclock/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservices/keyclock/user-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/microservices/promotion/src/main/java" charset="UTF-8" />
   </component>
 </project>
