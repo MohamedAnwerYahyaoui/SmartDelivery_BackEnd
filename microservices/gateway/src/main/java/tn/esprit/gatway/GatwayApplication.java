@@ -24,7 +24,7 @@ public class GatwayApplication {
 		        .route("Fournisseur",r->r.path("/fournisseur/**").uri("lb://Fournisseur"))
 				//.route("Restaurant",r->r.path("/restaurant/**").uri("lb://Restaurant"))
 
-
+				.route("livreur",r->r.path("/livreur/**").uri("lb://livreur"))
 
 
 				.route("restaurant-route", r -> r.path("/api/restaurant/**")

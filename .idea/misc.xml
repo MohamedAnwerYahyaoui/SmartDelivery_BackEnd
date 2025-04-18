@@ -18,6 +18,7 @@
         <option value="$PROJECT_DIR$/microservices/promotion/pom.xml" />
         <option value="$PROJECT_DIR$/microservices/client/pom.xml" />
         <option value="$PROJECT_DIR$/microservices/keyclock/pom.xml" />
+        <option value="$PROJECT_DIR$/microservices/livreur/pom.xml" />
       </list>
     </option>
   </component>

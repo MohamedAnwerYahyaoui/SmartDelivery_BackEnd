@@ -8,19 +8,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="GmailApi" />
-        <module name="userservice" />
         <module name="Commande" />
-        <module name="discoveryserver" />
-        <module name="configserver" />
+        <module name="livreur" />
         <module name="eurekaServer" />
-        <module name="apigateway" />
         <module name="annonce" />
         <module name="Restaurant" />
         <module name="Fournisseur" />
         <module name="config-server (1) (esprit)" />
-        <module name="management" />
-        <module name="advertisement" />
-        <module name="report" />
         <module name="client" />
         <module name="gateway" />
         <module name="promotion" />
@@ -36,9 +30,17 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="advertisement" target="11" />
+      <module name="apigateway" target="11" />
       <module name="config-server" target="17" />
+      <module name="configserver" target="11" />
+      <module name="discoveryserver" target="11" />
       <module name="gatway" target="17" />
+      <module name="management" target="11" />
       <module name="Promotionss" target="17" />
+      <module name="report" target="11" />
+      <module name="SpringBootMicroservices" target="1.8" />
+      <module name="userservice" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -60,6 +62,7 @@
       <module name="eurekaServer" options="-parameters" />
       <module name="gateway" options="-parameters" />
       <module name="gatway" options="-parameters" />
+      <module name="livreur" options="-parameters" />
       <module name="management" options="-parameters" />
       <module name="promotion" options="-parameters" />
       <module name="report" options="-parameters" />

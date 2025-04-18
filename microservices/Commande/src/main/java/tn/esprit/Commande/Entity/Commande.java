@@ -17,7 +17,7 @@ public class Commande {
     private Date dateLiv;
     private Status status;
 
-
+private Long idLivreur;
     public Commande() {
     }
 
@@ -25,6 +25,14 @@ public class Commande {
         this.mantantTotal = mantantTotal;
         this.dateLiv = dateLiv;
         this.status = status;
+
+    }
+
+    public Commande(float mantantTotal, Date dateLiv, Status status, Long idLivreur) {
+        this.mantantTotal = mantantTotal;
+        this.dateLiv = dateLiv;
+        this.status = status;
+        this.idLivreur = idLivreur;
     }
 
     public Long getIdCommande() {
@@ -57,5 +65,13 @@ public class Commande {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Long getIdLivreur() {
+        return idLivreur;
+    }
+
+    public void setIdLivreur(Long idLivreur) {
+        this.idLivreur = idLivreur;
     }
 }

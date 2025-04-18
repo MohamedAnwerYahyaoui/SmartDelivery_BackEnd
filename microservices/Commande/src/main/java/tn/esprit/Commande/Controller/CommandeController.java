@@ -53,11 +53,15 @@ public class CommandeController {
 
         commandeService.confirmerCommande(id, idc);
     }
-
-
-
-
+    @PostMapping("/commande/{commandeId}/livreur/{livreurId}")
+    public ResponseEntity<?> affecterCommandeALivreur(@PathVariable Long commandeId, @PathVariable Long livreurId) {
+        commandeService.affecterCommandeALivreur(commandeId, livreurId);
+        return ResponseEntity.ok("Commande affectée avec succès");
+    }
 }
+
+
+
 
 
 

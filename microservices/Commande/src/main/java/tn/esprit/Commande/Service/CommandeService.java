@@ -1,13 +1,11 @@
 package tn.esprit.Commande.Service;
 
 import feign.Client;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tn.esprit.Commande.Entity.Commande;
-import tn.esprit.Commande.OpenFeign.ClientClient;
-import tn.esprit.Commande.OpenFeign.ClientRequest;
-import tn.esprit.Commande.OpenFeign.EmailClient;
-import tn.esprit.Commande.OpenFeign.EmailRequest;
+import tn.esprit.Commande.OpenFeign.*;
 import tn.esprit.Commande.Repository.CommandeRepo;
 
 import java.util.List;
@@ -19,7 +17,7 @@ private final ClientClient client;
 
     @Autowired
     private EmailClient emailClient;
-
+     private LivreurClient livreurClient;
     public CommandeService(CommandeRepo cr,EmailClient emailClient,ClientClient client){
         this.cr=cr;
         this.emailClient=emailClient;
@@ -77,7 +75,7 @@ private final ClientClient client;
         }
 
         try {
-            // Envoi de l'email de confirmation
+
             EmailRequest e = new EmailRequest(cl.getmail(), "Confirmation de votre commande #" + commande.getIdCommande(),
                     "Votre commande est en cours de préparation.");
             EmailRequest email = new EmailRequest(
@@ -95,24 +93,15 @@ private final ClientClient client;
         }
     }
 
+    public void affecterCommandeALivreur(Long commandeId, Long livreurId) {
+        Commande commande = cr.findById(commandeId).get();
+        LivreurRequest livreur = livreurClient.getLivreurById(livreurId);
+        commande.setIdLivreur(livreur.getIdLivreur());
+        cr.save(commande);
+    }
 
-//    public void confirmerCommande(Long idCommande,String nom) {
-//        Commande commande = cr.findById(idCommande).get();
-//        ClientRequest cl =client.findbynom(nom);
-//
-//
-//        EmailRequest email = new EmailRequest(
-//                cl.getEmail(),
-//                "Confirmation de votre commande",
-//                "Votre commande #" + commande.getIdCommande() + " est en cours de préparation."
-//        );
-//
-//        emailClient.sendEmail(email);
-//    }
-//
-//
-//
-//
+
+
 
 
 }
